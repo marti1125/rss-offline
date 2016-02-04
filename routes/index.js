@@ -24,21 +24,26 @@ router.get('/', function(req, res, next) {
   feedparser.on('error', function(error) {
     // always handle errors
   });
-  feedparser.on('readable', function() {
+
+  var titles = []
+  var chunk;
+
+    feedparser.on('readable', function() {
     // This is where the action is!
     var stream = this
       , meta = this.meta
       , item;
 
-    var  titles = []
-    while (item = stream.read()) {
 
-      titles.push(item.title)
+    while (chunk = stream.read()) {
 
+      titles.push(chunk.title)
     }
 
-    res.render('index', { title: 'Express', data: titles });
+  });
 
+  feedparser.on('end', function() {
+    res.render('index', { title: 'Express', data: titles });
   });
 
 });
