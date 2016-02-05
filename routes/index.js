@@ -1,7 +1,7 @@
-var express = require('express');
+const express = require('express');
 const FeedParser = require('feedparser')
-  , request = require('request');
-var router = express.Router();
+      , request = require('request');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
   });
 
   feedparser.on('end', function() {
-    res.render('index', { title: 'Express', data: titles });
+    res.render('index', { title: 'Offline Reader', data: titles });
   });
 
 });
