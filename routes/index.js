@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
     // always handle errors
   });
 
-  var titles = []
+  var posts = []
   var chunk;
 
     feedparser.on('readable', function() {
@@ -36,14 +36,13 @@ router.get('/', function(req, res, next) {
 
 
     while (chunk = stream.read()) {
-
-      titles.push(chunk.title)
+      posts.push({title: chunk.title, description: chunk.description})
     }
 
   });
 
   feedparser.on('end', function() {
-    res.render('index', { title: 'Offline Reader', data: titles });
+    res.render('index', { title: 'Offline Reader', data: posts });
   });
 
 });
