@@ -6,5 +6,22 @@ function strip(html)
 }
 
 $( document ).ready(function() {
-  $(".body").html( strip( $(".body").html() ) )
+
+  //$(".body").html( strip( $(".body").html() ) )
+
+  $.get("/post", function(data){
+    $.each(data, function(k,v){
+      $("#post").append(
+        '<div class="panel panel-primary">' +
+          '<div class="panel-heading">' +
+            '<h3 class="panel-title">' + v.title +'</h3>' +
+          '</div>' +
+          '<div class="panel-body">' +
+            v.description +
+          '</div>' +
+        '</div>'
+      );
+    })
+  })
+
 });

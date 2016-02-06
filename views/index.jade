@@ -3,12 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  br  
+  br
   
-  each val in data
-    .panel.panel-primary
-      .panel-heading
-        h3.panel-title
-          =val.title
-      .body.panel-body
-        =val.description
+  #post

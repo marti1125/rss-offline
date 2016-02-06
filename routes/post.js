@@ -35,15 +35,15 @@ router.get('/', function(req, res, next) {
 
 
     while (chunk = stream.read()) {
-      posts.push({title: chunk.title, description: chunk.description})
+      posts.push({ "title": chunk.title, "description": chunk.description })
     }
 
   });
 
   feedparser.on('end', function() {
-    res.json('index', { title: 'Offline Reader', data: posts });
+    res.json(posts);
   });
-  
+
 });
 
 module.exports = router;
